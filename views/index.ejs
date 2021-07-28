@@ -3,13 +3,16 @@
 
 <div class="container">
   <h2 class="my-5">Posts</h2>
-  <div class="row gy-5">
-    <div class="col-6">
-      <div class="p-3 border bg-light">
-        <h2>Exemplo</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis aliquid rerum nihil similique unde quae modi, iure sequi omnis voluptatum, vel quaerat molestias reprehenderit placeat fugit nisi. Recusandae excepturi cupiditate dolorem nisi, deserunt maiores,</p>
+  <div class="row g-5">
+    <% posts.forEach(post => { %>
+      <div class="col-6">
+        <div class="p-3 border bg-light">
+          <h2><%= post.title %></h2>
+          <p><%= post.body %></p>
+          <a href="#"><%= post.tag %> </a>
+        </div>
       </div>
-    </div>
+    <% }) %>
   </div>
 </div>
 

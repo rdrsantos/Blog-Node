@@ -1,0 +1,31 @@
+<%- include ('../partials/header.ejs')  %>
+<%- include ('../partials/nav.ejs')  %>
+
+<div class="container">
+  <h2 class="mb-5">Atualizar post</h2>
+  <div class="row">
+    <form class="col-md-6" method="POST" action="/post/update">
+      <input type="hidden" name="id" value="<%= post.id %> ">
+        <label>Titulo</label>
+        <input class="form-control mt-2 mb-3" type="text" name="title" value="<%= post.title %> ">
+
+        <label>Categoria</label>
+        <select name="category_id">
+          <% categories.forEach(({id, title}) => { %>
+            <% if(post.category_id == id) {%> 
+              <option value="<%= id %>" selected><%= title %></option>
+            <% } else { %>
+              <option value="<%= id %>"><%= title %></option>
+            <% }  %> 
+          <% }) %>
+        </select>
+
+        <label>Conteudo</label>
+        <textarea class="form-control mt-2 mb-3" name="body" rows="15"><%= post.body %> </textarea>
+        
+        <button class="btn btn-primary">Cadastrar</button>
+    </form>
+  </div>
+</div>
+
+<%- include ('../partials/footer.ejs')  %>

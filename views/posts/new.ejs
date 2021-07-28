@@ -1,0 +1,27 @@
+<%- include ('../partials/header.ejs')  %>
+<%- include ('../partials/nav.ejs')  %>
+
+<div class="container">
+  <h2 class="mb-5">Adicionar novo post</h2>
+  <div class="row">
+    <form class="col-md-6" method="POST" action="/posts/add">
+        <label>Titulo</label>
+        <input class="form-control mt-2 mb-3" type="text" name="title">
+
+        <label>Categoria</label>
+        <select name="category_id">
+          <option value="" selected disabled>Selecionar...</option>
+          <% categories.forEach(({id, title}) => { %>
+            <option value="<%= id %> "><%= title %> </option>
+          <% }) %>
+        </select>
+
+        <label>Conteudo</label>
+        <textarea class="form-control mt-2 mb-3" name="body" rows="15"></textarea>
+        
+        <button class="btn btn-primary">Cadastrar</button>
+    </form>
+  </div>
+</div>
+
+<%- include ('../partials/footer.ejs')  %>

@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
-const CategoriesController = require('./categories/CategoriesController')
+const connection = require('./database/db');
+const CategoriesController = require('./categories/CategoriesController');
+const PostsController = require('./posts/PostsController');
 
 app.set('view engine', 'ejs');
 
@@ -12,9 +14,18 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 app.use('/', CategoriesController);
+app.use('/', PostsController);
 
 app.get('/',(req, res) => {
-  res.render('index')
+  connection('categories')
+  .join('posts', 'categories.id', 'posts.category_id')
+  .select()
+  .then((posts) => {
+    res.render('index', {posts});
+  })
+  .catch(err => {
+    console.log(err);
+  })
 })
 
 app.listen(8080);
