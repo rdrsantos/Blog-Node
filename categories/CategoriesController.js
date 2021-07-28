@@ -72,8 +72,9 @@ router.post('/category/update', (req, res)=>{
   if(id !== undefined) {
     connection('categories')
     .where({id})
-    .updade({
-      title
+    .update({
+      title,
+      tag: title
     })
     .then(()=>{
       res.redirect('/categories')

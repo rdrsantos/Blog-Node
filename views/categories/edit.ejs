@@ -4,9 +4,9 @@
 <div class="container">
   <h2 class="mb-5">Atualizar categoria</h2>
   <div class="row">
-    <form class="col-md-6" method="POST" action="/categories/add">
+    <form class="col-md-6" method="POST" action="/category/update">
         <label for="">Nome da categoria</label>
-        <input type="hidden" value="<%= category.id %> ">
+        <input type="hidden" value="<%= category.id %>" name="id">
         <input class="form-control mt-2 mb-3" type="text" name="title" value="<%= category.title %>">
         <button class="btn btn-primary">Atualizar</button>
     </form>
