@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
-const connection = require('./database/db');
-
+const CategoriesController = require('./categories/CategoriesController')
 
 app.set('view engine', 'ejs');
 
@@ -12,12 +11,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
-connection
-.authenticate()
-.then(()=>{})
-.catch((err)=>console.log(err))
-
-// app.use('/', UserController);
+app.use('/', CategoriesController);
 
 app.get('/',(req, res) => {
   res.render('index')

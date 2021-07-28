@@ -1,0 +1,15 @@
+<%- include ('../partials/header.ejs')  %>
+<%- include ('../partials/nav.ejs')  %>
+
+<div class="container">
+  <h2 class="mb-5">Adicionar nova categoria</h2>
+  <div class="row">
+    <form class="col-md-6" method="POST" action="/categories/add">
+        <label for="">Nome da categoria</label>
+        <input class="form-control mt-2 mb-3" type="text" name="title">
+        <button class="btn btn-primary">Cadastrar</button>
+    </form>
+  </div>
+</div>
+
+<%- include ('../partials/footer.ejs')  %>

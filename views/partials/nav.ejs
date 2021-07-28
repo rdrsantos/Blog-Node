@@ -1,11 +1,14 @@
-<header class="container-fluid bg-primary py-1 border-bottom border-white">
+<header class="container-fluid bg-primary py-1 border-bottom border-white mb-5">
   <div class="container d-flex justify-content-between align-items-center">
     <div class="logo" style="color: #fff;">
-      <h1>BlogNODE</h1>
+      <h1 class="d-inline me-3"><a href="/" class="text-light text-decoration-none">BlogNODE</a></h1>
+      <a href="/categories" class="d-inline text-light text-decoration-none">Categorias</a>
     </div>
     <form>
-      <input type="text" name="search">
-      <input type="submit" value="Procurar">
+      <div class="input-group">
+        <input class="form-control" type="text" name="search">
+        <input class="btn btn-dark fw-bold" type="submit" value="Procurar">
+      </div>
     </form>
   </div>
 </header>
