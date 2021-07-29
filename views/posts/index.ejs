@@ -19,11 +19,11 @@
         </tr>
       </thead>
       <tbody>
-        <% posts.forEach(({id, title, slug, tag}) => { %>
+        <% posts.forEach(({id, title, slug, category}) => { %>
           <tr>
             <td><%= title %></td>
             <td><%= slug %></td>
-            <td><%= tag %> </td>
+            <td><%= category %> </td>
             <td>
               <a href="/post/edit/<%= id %> " class="btn btn-warning">Editar</a>
               <form action="/post/delete" method="POST" class="d-inline" onsubmit="deleteConfirm(event, this)">

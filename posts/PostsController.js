@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const connection = require('../database/db');
+const slugify = require('slugify');
 
 router.get('/posts', (req, res) => {
-  connection('categories')
-  .join('posts', 'categories.id', 'posts.category_id')
-  .select()
+  connection('posts')
+  .innerJoin('categories', 'categories.id', 'posts.category_id')
+  .select(['posts.*', 'categories.title as category'])
   .then((posts)=>{
     res.render('posts', {posts});
   })
@@ -34,7 +35,7 @@ router.post('/posts/add', (req, res)=>{
       connection('posts')
       .insert({
         title,
-        slug: title,
+        slug: slugify(title),
         category_id,
         body
       })
@@ -94,7 +95,7 @@ router.post('/post/update', (req, res)=>{
     .where({id})
     .update({
       title,
-      slug: title,
+      slug: slugify(title),
       body,
       category_id
     })
@@ -106,4 +107,36 @@ router.post('/post/update', (req, res)=>{
     })
   }
 })
+
+router.get('/post/:slug', (req, res) => {
+  const {slug} = req.params;
+  if(slug !== undefined){
+    connection('posts')
+    .select()
+    .where({slug})
+    .then((post) => {
+      res.render('post', {post});
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+})
+
+router.get('/posts/:category', (req, res) => {
+  const {category: title} = req.params;
+  if(title !== undefined){
+    connection('categories')
+    .innerJoin('posts', 'categories.id', 'posts.category_id')
+    .select('posts.*', 'categories.title as category')
+    .where('categories.title', title)
+    .then((posts) => {
+      res.render('index', {posts})
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+})
+
 module.exports = router;

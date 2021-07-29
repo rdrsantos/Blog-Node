@@ -7,9 +7,10 @@
     <% posts.forEach(post => { %>
       <div class="col-6">
         <div class="p-3 border bg-light">
-          <h2><%= post.title %></h2>
+          <a href="/post/<%= post.slug %>"><h4><%= post.title %></h4></a>
+          <hr>
           <p><%= post.body %></p>
-          <a href="#"><%= post.tag %> </a>
+          <a href="/posts/<%= post.category %>" class="btn btn-primary btn-sm"><%= post.category %></a>
         </div>
       </div>
     <% }) %>

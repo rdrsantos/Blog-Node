@@ -17,11 +17,15 @@ app.use('/', CategoriesController);
 app.use('/', PostsController);
 
 app.get('/',(req, res) => {
-  connection('categories')
-  .join('posts', 'categories.id', 'posts.category_id')
-  .select()
-  .then((posts) => {
-    res.render('index', {posts});
+  connection('posts')
+  .join('categories', 'categories.id', 'posts.category_id')
+  .select(['posts.*', 'categories.title as category'])
+  .then((data) => {
+    let posts = data;
+    posts.forEach(item => {
+      item.body = item.body.substring(0,100)
+    })
+    res.render('index', {posts})
   })
   .catch(err => {
     console.log(err);
