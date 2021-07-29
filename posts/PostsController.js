@@ -7,8 +7,9 @@ router.get('/posts', (req, res) => {
   connection('posts')
   .innerJoin('categories', 'categories.id', 'posts.category_id')
   .select(['posts.*', 'categories.title as category'])
+  .orderBy('id', 'desc')
   .then((posts)=>{
-    res.render('posts', {posts});
+    res.render('posts', {posts, total: posts.length});
   })
   .catch(err=>{
     console.log(err)
@@ -84,6 +85,8 @@ router.get('/post/edit/:id', (req, res) => {
     .catch( err =>{
       console.log(err)
     })
+  }else{
+    res.redirect('/posts')
   }
 })
 
@@ -115,7 +118,7 @@ router.get('/post/:slug', (req, res) => {
     .select()
     .where({slug})
     .then((post) => {
-      res.render('post', {post});
+      res.render('post', {post: post[0]});
     })
     .catch(err => {
       console.log(err)

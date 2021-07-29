@@ -5,11 +5,11 @@
       <a href="/categories" class="text-light text-decoration-none me-3">Categorias</a>
       <a href="/posts" class="text-light text-decoration-none">Posts</a>
     </div>
-    <form>
-      <div class="input-group">
-        <input class="form-control" type="text" name="search">
-        <input class="btn btn-dark fw-bold" type="submit" value="Procurar">
-      </div>
-    </form>
+      <form action="/filter" method="POST">
+        <div class="input-group">
+          <input class="form-control" type="text" name="search">
+          <input class="btn btn-dark fw-bold" type="submit" value="Procurar">
+        </div>
+      </form>
   </div>
 </header>

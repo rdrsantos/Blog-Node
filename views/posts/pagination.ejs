@@ -1,0 +1,30 @@
+<%- include ('../partials/header.ejs')  %>
+<%- include ('../partials/nav.ejs')  %>
+
+<div class="container">
+  <h2 class="my-5">Posts</h2>
+  <div class="row g-5">
+    <% posts.forEach(post => { %>
+      <div class="col-6">
+        <div class="p-3 border bg-light">
+          <a href="/post/<%= post.slug %>"><h4><%= post.title %></h4></a>
+          <hr>
+          <a href="/posts/<%= post.category %>" class="btn btn-primary btn-sm"><%= post.category %></a>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+  <div class="mt-4">
+    <% if (page == 2) { %>
+      <a href="/" class="btn btn-success">Anterior</a>
+      <% }else{%>
+        <a href="/page/<%= page - 1 %>" class="btn btn-success">Anterior</a>
+      <% } %>
+
+      <% if (next) { %>
+        <a href="/page/<%= page + 1 %>" class="btn btn-success">Proximo</a>
+      <% } %>
+  </div>
+</div>
+
+<%- include ('../partials/footer.ejs')  %>
